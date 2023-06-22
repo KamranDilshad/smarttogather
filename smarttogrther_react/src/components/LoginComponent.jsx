@@ -13,7 +13,6 @@ const LoginComponent = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
@@ -30,11 +29,11 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="container my-5 ">
+    <div className="container my-5 w-50  " style={{paddingTop:"150px"}} >
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow p-3 mb-5 bg-white rounded">
-            <h5 className="text-center">Login</h5>
+            <h3 className="text-center">Login</h3>
             <form onSubmit={handleSubmit}>
               <div className="email-section">
                 <div className="mt-1">
