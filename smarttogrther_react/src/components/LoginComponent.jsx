@@ -29,7 +29,7 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="container my-5 w-50  " style={{paddingTop:"150px"}} >
+    <div className="container my-5 w-50  " >
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow p-3 mb-5 bg-white rounded">

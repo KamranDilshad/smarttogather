@@ -12,6 +12,8 @@ import Instructor from "./pages/Instructor";
 import CourseDetail from "./pages/CourseDetail";
 import Features from "./pages/Features";
 import Testimonial from "./pages/Testimonial";
+import LoginComponent from "./components/LoginComponent";
+import Register from "./components/Register";
 
 
 function App() {
@@ -29,10 +31,11 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="instructor" element={<Instructor />} />
         <Route path="coursedetail" element={<CourseDetail />} />
-        <Route path="features" element={<Features />} />
+         
         <Route path="testimonial" element={<Testimonial />} />
         <Route path="/courses/coursedetail" element={<CourseDetail />} />
-
+        <Route path="login" element={<LoginComponent />} />
+        <Route path="signup" element={<Register />} />
       </Routes>
       <Footer />
 

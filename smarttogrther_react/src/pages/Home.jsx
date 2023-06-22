@@ -16,7 +16,7 @@ const Home = () => {
                 {/* <!-- Navbar Start --> */}
 
 
-                <div className="container-fluid p-0">
+                {/* <div className="container-fluid p-0">
                     <nav className="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
                         <Link to="/" className="navbar-brand ml-lg-3">
                             <h1 className="m-0 text-uppercase text-primary"><i className="fa fa-book-reader mr-3"></i>Smart Together</h1>
@@ -34,7 +34,7 @@ const Home = () => {
                             <a href="file:///C:/Users/UmarJutt/Desktop/online-education-website-template/online-education-website-template/signup.html" className="btn btn-primary py-2 px-4 d-none d-lg-block">Signup</a>
                         </div>
                     </nav>
-                </div>
+                </div> */}
 
 
                 {/* <!-- Navbar End --> */}

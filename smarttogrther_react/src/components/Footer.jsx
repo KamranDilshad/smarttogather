@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () =>{
+   
+    
     return(
         <>
                             {/* <!-- Footer Start --> */}
@@ -86,7 +88,7 @@ const Footer = () =>{
                     </div>
                 </div>
                 
-                <a to="#" className="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"><i className="fa fa-angle-double-up"></i></a>
+                <a to="#" className="btn btn-lg btn-primary rounded-0 btn-lg-square back-to-top"  ><i className="fa fa-angle-double-up"></i></a>
 
   
        

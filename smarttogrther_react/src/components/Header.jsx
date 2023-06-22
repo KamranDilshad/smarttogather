@@ -31,7 +31,8 @@ const Header = () => {
                             </div>
                             <Link to="contact" className="nav-item nav-link">Contact</Link>
                         </div>
-                        <Link to=" " className="btn btn-primary py-2 px-4 d-none d-lg-block">Join Us</Link>
+                        <Link to="signup " className="btn btn-primary py-2 px-4 d-none d-lg-block">Sign Up</Link>
+                        <Link to="login " className="btn btn-primary py-2 px-4 mx-2 d-none d-lg-block">Login</Link>
                     </div>
                 </nav>
             </div>
