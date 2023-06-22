@@ -15,8 +15,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       {/* <App /> */}
-      <Dashbord/>
+      {/* <Dashbord/> */}
       {/* <Register/> */}
+      <LoginComponent/>
+
    
     
     </BrowserRouter>
