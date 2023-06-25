@@ -15,14 +15,12 @@ import Testimonial from "./pages/Testimonial";
 import LoginComponent from "./components/LoginComponent";
 import Register from "./components/Register";
 
-
 function App() {
   return (
     <div className="App">
       <Topbar />
       <Header />
-           
-      
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
@@ -31,14 +29,12 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="instructor" element={<Instructor />} />
         <Route path="coursedetail" element={<CourseDetail />} />
-         
         <Route path="testimonial" element={<Testimonial />} />
         <Route path="/courses/coursedetail" element={<CourseDetail />} />
         <Route path="login" element={<LoginComponent />} />
         <Route path="signup" element={<Register />} />
       </Routes>
       <Footer />
-
     </div>
   );
 }

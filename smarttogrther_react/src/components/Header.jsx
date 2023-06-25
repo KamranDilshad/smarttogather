@@ -19,7 +19,7 @@ const Header = () => {
                         <div className="navbar-nav mx-auto py-0">
                             <Link to="/" className="nav-item nav-link">Home</Link>
                             <Link to="about" className="nav-item nav-link">About</Link>
-                            <Link to="courses" className="nav-item nav-link active">Courses</Link>
+                            <Link to="courses" className="nav-item nav-link ">Courses</Link>
                             <div className="nav-item dropdown">
                                 <Link to="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</Link>
                                 <div className="dropdown-menu m-0">
