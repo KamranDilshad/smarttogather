@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import { Link } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import "./Register.css";
 import axios from "axios";
@@ -42,11 +44,11 @@ const LoginComponent = () => {
         }
       });
   };
- 
+
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
- 
+
   return (
     <div className="container my-5 w-50  ">
       <div className="row justify-content-center">
@@ -113,16 +115,18 @@ const LoginComponent = () => {
             </form>
             <div>
               <p className="link mt-0">
-                <button
-                  className="fw-bold btn btn-warning"
-                  style={{
-                    width: "100%",
-                    color: "white",
-                    borderRadius: "10px",
-                  }}
-                >
-                  Create new Account
-                </button>
+                <Link to="/signup">
+                  <button
+                    className="fw-bold btn btn-warning"
+                    style={{
+                      width: "160%",
+                      color: "white",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    Create new Account
+                  </button>
+                </Link>
               </p>
             </div>
           </div>

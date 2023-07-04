@@ -3,6 +3,8 @@ import { FaCaretSquareRight, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import "./Register.css";
 import axios from "axios";
 
+import { Link } from "react-router-dom";
+
 const Register = () => {
   const [checked, setChecked] = useState(false);
   const [type, setType] = useState("customer");
@@ -352,17 +354,19 @@ const Register = () => {
               <div>
                 <p className="link mt-1">
                   <p className="my-3">Already have an account?</p>
+                  <Link to="/login">
                   <button
-                    className="fw-bold btn btn-warning"
+                    className="fw-bold btn btn-warning "
                     style={{
-                      width: "30%",
-                      color: "white",
+                      width: "100%",
+                      color: "white", 
                       borderRadius: "10px",
                     }}
                   >
-                    Sign In
+                    Login
                   </button>
-                </p>
+                  </Link>
+                </p>  
               </div>
           
           </div>
