@@ -1,19 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IconContext } from "react-icons";
-import {
-  FaBook,
-  FaChalkboardTeacher,
-  FaDashcube,
-  FaEnvelope,
-  FaGraduationCap,
-  FaLayerGroup,
-  FaProjectDiagram,
-  FaUser,
-  FaUsers,
-} from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import "./dashbord.css";
-
-import { Link } from "react-router-dom";
 
 const AdminDashboard = () => {
   const [profiles, setProfiles] = useState([]);
@@ -153,8 +141,8 @@ const AdminDashboard = () => {
 
   return (
     <>
-      <div className="container-fluid d-flex px-0 row mx-auto">
-        <div className="col-2 bg-dark px-0">
+      <div className=" px-0  row mx-auto">
+        {/* <div className="col-2 bg-dark px-0">
           <div className="" style={{ height: "100vh" }}>
             <nav className=" px-2 flex-column">
               <Link to="/" className="navbar-brand d-block ">
@@ -212,10 +200,10 @@ const AdminDashboard = () => {
               </div>
             </nav>
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-10 py-4  bg-light">
-          <div className="continer-fluid d-flex">
+        <div className="py-1  bg-light">
+          {/* <div className="continer-fluid d-flex">
             <form class="d-flex" role="search">
               <input
                 class="form-control text-black "
@@ -232,8 +220,8 @@ const AdminDashboard = () => {
               <FaEnvelope />
             </span>
           <span>smarttogater@gmail.com</span>
-          </div>
-          <div className="py-3">
+          </div> */}
+          <div className="py-2">
             <h1>Dashboard</h1>
           </div>
           {/* Card Section */}

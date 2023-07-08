@@ -5,7 +5,7 @@ import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const TeacherRegister = () => {
   const [checked, setChecked] = useState(false);
   const [type, setType] = useState("customer");
   console.log(type, "type");
@@ -19,6 +19,7 @@ const Register = () => {
     gender: "",
     password: "",
     subjects: [""],
+    degree: "",
   });
 
   const handleChange = (e) => {
@@ -35,13 +36,14 @@ const Register = () => {
     gender: state.gender,
     subjects: state.subjects,
     password: state.password,
+    degree: state.degree,
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/students/",
+        "http://localhost:8080/api/teachers/",
         userData
       );
       // console.log(response.status, response.data);
@@ -118,11 +120,11 @@ const Register = () => {
   //   setFirstName("");
   // };
   return (
-    <div className="container my-5  w-50  ">
+    <div className="container my-5  w-50 ">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow p-3 mb-5 bg-white rounded">
-            <h4 className="text-center ">SignUp as a Student</h4>
+            <h4 className="text-center ">SignUp as a Teacher</h4>
             {/* <div className="d-flex justify-content-around mt-1">
               <div className="social-icons-div">
                 <img className="" src="./img/facebook.png" alt="" />
@@ -174,8 +176,21 @@ const Register = () => {
               <div className="mt-1">
                 <label htmlFor="lastName">Last Name</label>
               </div>
+              <div className="email-section">
+                <FaUser className="env ms-n2 " />
+                <input
+                  className="form-control input-form "
+                  type="lastName"
+                  id="fullName"
+                  name="lastName"
+                  placeholder="Doe"
+                  value={state.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
               {/* <div className="email-section">
-                <FaUser className="env ms-n2" />
+                <FaUser className="env" />
                 <input
                   className="form-control input-form"
                   type="text"
@@ -203,19 +218,6 @@ const Register = () => {
                   />
                 </div>
               </div> */}
-               <div className="email-section">
-                <FaUser className="env ms-n2 " />
-                <input
-                  className="form-control input-form "
-                  type="lastName"
-                  id="fullName"
-                  name="lastName"
-                  placeholder="Jhon"
-                  value={state.lastName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
               <div className="mt-1">
                 <label htmlFor="lastName">Gender</label>
               </div>
@@ -236,7 +238,7 @@ const Register = () => {
               </div>
               {/* {type === "customer" ? (
                 <> */}
-                  <div className="mt-1">
+              {/* <div className="mt-1">
                     <label htmlFor="businessCategory">Learn Subject</label>
                   </div>
                   <div className="password-section">
@@ -250,9 +252,9 @@ const Register = () => {
                       onChange={handleChange}
                       required
                     />
-                  </div>
+                  </div> */}
 
-                  {/* <div className="d-flex justify-content-between p-2 mt-1">
+              {/* <div className="d-flex justify-content-between p-2 mt-1">
                     <select
                       className="form-select  "
                       name="day"
@@ -296,37 +298,40 @@ const Register = () => {
                       ))}
                     </select>
                   </div> */}
-                {/* </>
+              {/* </>
               ) : (
                 <> */}
-                  {/* <div className="mt-1">
-                    <label htmlFor="businessCategory">Teach Subject</label>
-                  </div>
-                  <div className="password-section">
-                    <FaCaretSquareRight className="env" />
-                    <input
-                      className="form-control input-form"
-                      id="businessCategory"
-                      name="subjects"
-                      placeholder="Subject Name"
-                      value={state.subjects}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div> */}
-                  {/* <div className="mt-1">
-                    <label htmlFor="businessCategory">Degree</label>
-                  </div>
-                  <div className="password-section">
-                    <FaCaretSquareRight className="env" />
-                    <input
-                      className="form-control input-form"
-                      type="password"
-                      id="businessCategory"
-                      placeholder="Degree Name"
-                    />
-                  </div> */}
-                {/* </>
+              <div className="mt-1">
+                <label htmlFor="businessCategory">Teach Subject</label>
+              </div>
+              <div className="password-section">
+                <FaCaretSquareRight className="env" />
+                <input
+                  className="form-control input-form"
+                  id="businessCategory"
+                  name="subjects"
+                  placeholder="Subject Name"
+                  value={state.subjects}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mt-1">
+                <label htmlFor="businessCategory">Degree</label>
+              </div>
+              <div className="password-section">
+                <FaCaretSquareRight className="env" />
+                <input
+                  className="form-control input-form"
+                  id="businessCategory"
+                  name="degree"
+                  placeholder="Your Degree"
+                  value={state.degree}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              {/* </>
               )} */}
               <div className="mt-1">
                 <label htmlFor="password">Password</label>
@@ -399,13 +404,13 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default TeacherRegister;
 // import React, { useState } from "react";
 // import { FaCaretSquareRight, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 // import "./Register.css";
 // import axios from "axios";
 
-// const Register = () => {
+// const TeacherRegister = () => {
 //   const [checked, setChecked] = useState(false);
 //   const [type, setType] = useState("customer");
 
@@ -636,4 +641,4 @@ export default Register;
 //   );
 // };
 
-// export default Register;
+// export default TeacherRegister;

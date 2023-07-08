@@ -1,15 +1,39 @@
-import React, { useState } from "react";
-
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import "./Register.css";
 import axios from "axios";
+
 const LoginComponent = () => {
   const [checked, setChecked] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    // Check if user is already logged in using local storage
+    const storedLoggedIn = localStorage.getItem("loggedIn");
+    const storedUsername = localStorage.getItem("username");
+    if (storedLoggedIn && storedUsername) {
+      setLoggedIn(true);
+      setUsername(storedUsername);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    // Perform logout logic
+
+    // Assuming the logout is successful
+    setLoggedIn(false);
+    setUsername("");
+    // Clear the stored data from local storage
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("username");
+  };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -26,12 +50,16 @@ const LoginComponent = () => {
       password: data.password,
     };
     axios
-      .post(
-        "https://smartbackend-production.up.railway.app/api/students/login",
-        userData
-      )
+      .post("http://localhost:8080/api/students/login", userData)
       .then((response) => {
         console.log(response);
+        setLoggedIn(true);
+        setUsername(response.data.student.firstName);
+        // Store the logged-in state and username in local storage
+        localStorage.setItem("loggedIn", true);
+        localStorage.setItem("username", response.data.student.firstName);
+        console.log("this is log",response.data.student.firstName);
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
@@ -48,6 +76,15 @@ const LoginComponent = () => {
   const handleCheckboxChange = () => {
     setChecked(!checked);
   };
+
+  if (loggedIn) {
+    return (
+      <div>
+        <p>Welcome, {username}!</p>
+     
+      </div>
+    );
+  }
 
   return (
     <div className="container my-5 w-50  ">
@@ -113,7 +150,7 @@ const LoginComponent = () => {
                 </button>
               </div>
             </form>
-            <div>
+            {/* <div>
               <p className="link mt-0">
                 <Link to="/signup">
                   <button
@@ -128,7 +165,7 @@ const LoginComponent = () => {
                   </button>
                 </Link>
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

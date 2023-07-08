@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CourseHeaderComponent from "./CourseHeaderComponent";
+import PostCourse from "./PostCourses";
 
 const CoursesComponent = () => {
     return (
@@ -142,6 +143,8 @@ const CoursesComponent = () => {
                 </div>
             </div>
             {/* <!-- Courses End --> */}
+
+            <PostCourse/>
 
 
 
