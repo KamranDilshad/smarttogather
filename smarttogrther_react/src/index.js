@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import Dashbord from './admindashboard/Dashbord';
@@ -17,12 +16,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
-      {/* <Dashbord/> */}
-      {/* <Register/> */}
-      {/* <LoginComponent/> */}
-      {/* <RouteDashboard/> */}
+     
 
-   
+      {/* <RouteDashboard/>
+    */}
     
     </BrowserRouter>
   </React.StrictMode>

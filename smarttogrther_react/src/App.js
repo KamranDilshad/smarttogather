@@ -15,6 +15,10 @@ import LoginComponent from "./components/LoginComponent";
 import Register from "./components/Register";
 import FeedbackPopup from "./components/FeedBackForm";
 import TeacherRegister from "./components/TeacherRegister";
+import FeedbackPage from "./components/FeedBackResponse";
+import TeacherLogin from "./components/TeacherLogin";
+import GetNews from "./components/GetNews";
+import ProfileGetstudent from "./components/ProfileGetstudent";
 
 function App() {
   return (
@@ -22,21 +26,27 @@ function App() {
       <Topbar />
       <Header />
       <FeedbackPopup/>
+    
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="courses" element={<Courses />} />
-        <Route path="pages" element={<Pages />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="instructor" element={<Instructor />} />
-        <Route path="coursedetail" element={<CourseDetail />} />
-        <Route path="testimonial" element={<Testimonial />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/pages" element={<Pages />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/newsget" element={<GetNews/>} />
+        <Route path="/feedbackget" element={<FeedbackPage/>} />
+        <Route path="/instructor" element={<Instructor />} />
+        <Route path="/coursedetail" element={<CourseDetail />} />
+        <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/courses/coursedetail" element={<CourseDetail />} />
-        <Route path="login" element={<LoginComponent />} />
-        <Route path="signup/student" element={<Register />} />
-        <Route path="signup/teacher" element={<TeacherRegister  />} />
+        <Route path="/loginstudent" element={<LoginComponent />} />
+        <Route path="/loginteacher" element={<TeacherLogin/>} />
+        <Route path="/signup/student" element={<Register />} />
+        <Route path="/signup/teacher" element={<TeacherRegister  />} />
+        <Route path="/profilegetstudent" element={<ProfileGetstudent/>} />
       </Routes>
+    
       <Footer />
     </div>
   );

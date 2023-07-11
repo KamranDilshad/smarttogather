@@ -1,0 +1,52 @@
+.feedback-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feedback-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .feedback-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .feedback-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .feedback-name {
+    font-weight: bold;
+  }
+  
+  .feedback-email {
+    font-style: italic;
+  }
+  
+  .feedback-message {
+    margin-top: 5px;
+  }
+  
+  .loading {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .error {
+    font-size: 18px;
+    text-align: center;
+    color: red;
+    margin: 20px;
+  }
+  

@@ -5,7 +5,7 @@ const FeedbackPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [feedback, setFeedback] = useState('');
+  const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const togglePopup = () => {
@@ -16,7 +16,7 @@ const FeedbackPopup = () => {
     e.preventDefault();
 
     // Perform form validation
-    if (!name || !email || !feedback) {
+    if (!name || !email || !message) {
       setErrorMessage('Please fill in all fields');
       return;
     }
@@ -31,7 +31,7 @@ const FeedbackPopup = () => {
         body: JSON.stringify({
           name: name,
           email: email,
-          feedback: feedback
+          message: message
         })
       });
 
@@ -70,8 +70,8 @@ const FeedbackPopup = () => {
             />
             <textarea
               placeholder="Enter your feedback"
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button type="submit">Submit</button>

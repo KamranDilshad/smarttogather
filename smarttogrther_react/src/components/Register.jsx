@@ -13,8 +13,8 @@ const Register = () => {
   //const [gender, setGender] = useState("");
 
   const [state, setState] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     gender: "",
     password: "",
@@ -29,8 +29,10 @@ const Register = () => {
     });
   };
   const userData = {
-    firstName: state.firstName,
-    lastName: state.lastName,
+    blocked:false,
+    verified:false,
+    firstname: state.firstname,
+    lastname: state.lastname,
     email: state.email,
     gender: state.gender,
     subjects: state.subjects,
@@ -49,7 +51,7 @@ const Register = () => {
         response.data?.user?.insertedId ||
         response.data?.user?.acknowledged
       ) {
-        navigate("/login");
+        navigate("/loginstudent");
         console.log(response.status, response.data);
       } else {
         console.log(response.status, response.data);
@@ -164,9 +166,9 @@ const Register = () => {
                   className="form-control input-form "
                   type="firstName"
                   id="fullName"
-                  name="firstName"
+                  name="firstname"
                   placeholder="Jhon"
-                  value={state.firstName}
+                  value={state.firstname}
                   onChange={handleChange}
                   required
                 />
@@ -174,15 +176,15 @@ const Register = () => {
               <div className="mt-1">
                 <label htmlFor="lastName">Last Name</label>
               </div>
-              {/* <div className="email-section">
+              <div className="email-section">
                 <FaUser className="env ms-n2" />
                 <input
                   className="form-control input-form"
-                  type="text"
+                  type="lastName"
                   id="lastName"
-                  name="lastName"
+                  name="lastname"
                   placeholder="Doe"
-                  value={state.lastName}
+                  value={state.lastname}
                   onChange={handleChange}
                   required
                 />
@@ -202,20 +204,20 @@ const Register = () => {
                     required
                   />
                 </div>
-              </div> */}
-               <div className="email-section">
+              </div>
+               {/* <div className="email-section">
                 <FaUser className="env ms-n2 " />
                 <input
                   className="form-control input-form "
                   type="lastName"
                   id="fullName"
-                  name="lastName"
+                  name="lastname"
                   placeholder="Jhon"
-                  value={state.lastName}
+                  value={state.lastname}
                   onChange={handleChange}
                   required
                 />
-              </div>
+              </div> */}
               <div className="mt-1">
                 <label htmlFor="lastName">Gender</label>
               </div>
@@ -230,8 +232,8 @@ const Register = () => {
                 >
                   <option value="">Gender</option>
 
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               </div>
               {/* {type === "customer" ? (
@@ -378,7 +380,7 @@ const Register = () => {
             <div>
               <p className="link mt-1">
                 <p className="my-3">Already have an account?</p>
-                <Link to="/login">
+                <Link to="/loginstudent">
                   <button
                     className="fw-bold btn btn-warning "
                     style={{

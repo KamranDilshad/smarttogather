@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CoursesComponent from "../components/CoursesComponent";
 import InstructorComponent from "../components/InstructorsComponent";
-
+import axios from "axios";
+import download from "../components/download.png"
 import Topbar from "../components/Topbar";
 import About from "./About";
 import Courses from "./Courses";
 
 const Home = () => {
+    const [teacher, setTeacher] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    const [query, setQuery] = useState("");
+  
+    useEffect(() => {
+      fetchFeedbacks();
+    }, []);
+  
+    const fetchFeedbacks = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/teachers/");
+        setTeacher(response.data.teachers);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    const search = (teacher) => {
+        return teacher.filter((item) => item.firstname.toLowerCase().includes(query) || 
+        item.lastname.toLowerCase().includes(query) || item.degree.includes(query)
+        );
+      };
+console.log("this is query", query);
     return (
         <>
            
@@ -44,10 +72,10 @@ const Home = () => {
                 {/*<!-- Header Start --> */}
                 <div className="jumbotron jumbotron-fluid position-relative overlay-bottom" style={{marginBottom: '90px'}} >
                     <div className="container text-center my-5 py-5">
-                        <h1 className="text-white mt-4 mb-4">Find Teacher / Student For Free</h1>
+                        <h1 className="text-white mt-4 mb-4">Find Teacher For Free</h1>
                         <div className="mx-auto mb-5" style={{width: '100%', maxWidth: '600px'}} > 
                             <div className="input-group">
-                                <div className="input-group-prepend">
+                                {/* <div className="input-group-prepend">
                                     <button className="btn btn-outline-light bg-white text-body px-4 dropdown-toggle" type="button" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="true">Select</button>
                                     <div className="dropdown-menu">
@@ -56,8 +84,9 @@ const Home = () => {
                                         <Link className="dropdown-item" to="#">Teacher</Link>
                                         <Link className="dropdown-item" to="#">Student</Link>
                                     </div>
-                                </div>
-                                <input type="text" className="form-control border-light" style={{padding: "30px 25px"}} placeholder="Location" />
+                                </div> */}
+                                <input type="text" className="form-control border-light" style={{padding: "30px 25px"}} placeholder="Location"
+                                  onChange={(e) => setQuery(e.target.value.toLowerCase())} />
                                     <div className="input-group-append">
                                         <button className="btn btn-secondary px-4 px-lg-5">Find</button>
                                     </div>
@@ -65,6 +94,144 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+                <div className="container-fluid py-5">
+                <div className="container py-5">
+                    <div className="row mx-0 justify-content-center">
+                        <div className="col-lg-8">
+                            <div className="section-title text-center position-relative mb-5">
+                                <h6 className="d-inline-block position-relative text-secondary text-uppercase pb-2">Our Courses</h6>
+                                <h1 className="display-4">Our Teachers</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        {teacher && search(teacher)?.map((teacher)=>(
+                            // console.log(teacher);
+                             
+                              <div className="col-lg-4 col-md-6 pb-4" key={teacher.id}>
+                              <Link className="courses-list-item position-relative d-block overflow-hidden mb-2" to="/courses/coursedetail">
+                              {/* <Link to="coursedetail" className="dropdown-item">Course Detail</Link> */}
+                                  <img className="img-fluid  " src={download} alt="" />
+                                  <div className="courses-text">
+                                      <h4 className="text-center text-white px-3">{teacher.firstname}
+                                          </h4>
+                                      <div className="border-top w-100 mt-3">
+                                          <div className="d-flex justify-content-between p-4">
+                                              <span className="text-white"><i className="fa fa-user mr-2"></i>{teacher.email}</span>
+                                           <span className="text-white"><i className="fa fa-star mr-2"></i>
+                                                  <small>Price: {teacher.degree}</small></span>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </Link>
+                          </div>
+                       ) )}
+                      
+                        {/* <div className="col-lg-4 col-md-6 pb-4">
+                            <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                                <img className="img-fluid" src="assets/img/courses-2.jpg" alt="" />
+                                <div className="courses-text">
+                                    <h4 className="text-center text-white px-3">Web design & development courses for
+                                        beginners</h4>
+                                    <div className="border-top w-100 mt-3">
+                                        <div className="d-flex justify-content-between p-4">
+                                            <span className="text-white"><i className="fa fa-user mr-2"></i>Jhon Doe</span>
+                                            <span className="text-white"><i className="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="col-lg-4 col-md-6 pb-4">
+                            <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                           
+                                <img className="img-fluid" src="assets/img/courses-3.jpg" alt="" />
+                                <div className="courses-text">
+                                    <h4 className="text-center text-white px-3">Web design & development courses for
+                                        beginners</h4>
+                                    <div className="border-top w-100 mt-3">
+                                        <div className="d-flex justify-content-between p-4">
+                                            <span className="text-white"><i className="fa fa-user mr-2"></i>Jhon Doe</span>
+                                            <span className="text-white"><i className="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="col-lg-4 col-md-6 pb-4">
+                            <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                                <img className="img-fluid" src="assets/img/courses-4.jpg" alt="" />
+                                <div className="courses-text">
+                                    <h4 className="text-center text-white px-3">Web design & development courses for
+                                        beginners</h4>
+                                    <div className="border-top w-100 mt-3">
+                                        <div className="d-flex justify-content-between p-4">
+                                            <span className="text-white"><i className="fa fa-user mr-2"></i>Jhon Doe</span>
+                                            <span className="text-white"><i className="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="col-lg-4 col-md-6 pb-4">
+                            <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                                <img className="img-fluid" src="assets/img/courses-5.jpg" alt="" />
+                                <div className="courses-text">
+                                    <h4 className="text-center text-white px-3">Web design & development courses for
+                                        beginners</h4>
+                                    <div className="border-top w-100 mt-3">
+                                        <div className="d-flex justify-content-between p-4">
+                                            <span className="text-white"><i className="fa fa-user mr-2"></i>Jhon Doe</span>
+                                            <span className="text-white"><i className="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="col-lg-4 col-md-6 pb-4">
+                            <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
+                                <img className="img-fluid" src="assets/img/courses-6.jpg" alt="" />
+                                <div className="courses-text">
+                                    <h4 className="text-center text-white px-3">Web design & development courses for
+                                        beginners</h4>
+                                    <div className="border-top w-100 mt-3">
+                                        <div className="d-flex justify-content-between p-4">
+                                            <span className="text-white"><i className="fa fa-user mr-2"></i>Jhon Doe</span>
+                                            <span className="text-white"><i className="fa fa-star mr-2"></i>4.5
+                                                <small>(250)</small></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> */}
+                        {/* <div className="col-12">
+                            <nav aria-label="Page navigation">
+                                <ul className="pagination pagination-lg justify-content-center mb-0">
+                                    <li className="page-item disabled">
+                                        <a className="page-link rounded-0" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span className="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li className="page-item active"><a className="page-link" to="#">1</a></li>
+                                    <li className="page-item"><a className="page-link" to="#">2</a></li>
+                                    <li className="page-item"><a className="page-link" to="#">3</a></li>
+                                    <li className="page-item">
+                                        <a className="page-link rounded-0" to="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span className="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div> */}
+                    </div>
+                </div>
+            </div>
                 {/* <!-- Header End --> */}
 
                 {/* about section start */}
@@ -161,6 +328,7 @@ const Home = () => {
                     </div>
                 </div>
                 {/* <!-- Feature Start --> */}
+             
 
 
                {/* <!-- Courses Start --> */}

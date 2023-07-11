@@ -14,7 +14,8 @@ const Header = () => {
       setLoggedIn(true);
       setUsername(storedUsername);
     }
-  }, []);
+  }, [username]);
+  
 
     const handleLogout = () => {
       // Perform logout logic
@@ -25,6 +26,7 @@ const Header = () => {
       // Clear the stored data from local storage
       localStorage.removeItem("loggedIn");
       localStorage.removeItem("username");
+      localStorage.removeItem("degree");
     };
 
   return (
@@ -54,10 +56,10 @@ const Header = () => {
               <Link to="/" className="nav-item nav-link">
                 Home
               </Link>
-              <Link to="about" className="nav-item nav-link">
+              <Link to="/about" className="nav-item nav-link">
                 About
               </Link>
-              <Link to="courses" className="nav-item nav-link ">
+              <Link to="/courses" className="nav-item nav-link ">
                 Courses
               </Link>
               <div className="nav-item dropdown">
@@ -69,22 +71,28 @@ const Header = () => {
                   Pages
                 </Link>
                 <div className="dropdown-menu m-0">
-                  <Link to="coursedetail" className="dropdown-item">
+                  <Link to="/coursedetail" className="dropdown-item">
                     Course Detail
                   </Link>
-                  <Link to="features" className="dropdown-item">
+                  <Link to="/features" className="dropdown-item">
                     Our Features
                   </Link>
-                  <Link to="instructor" className="dropdown-item">
+                  <Link to="/instructor" className="dropdown-item">
                     Instructors
                   </Link>
-                  <Link to="testimonial" className="dropdown-item">
+                  <Link to="/testimonial" className="dropdown-item">
                     Testimonial
                   </Link>
                 </div>
               </div>
-              <Link to="contact" className="nav-item nav-link">
+              <Link to="/contact" className="nav-item nav-link">
                 Contact
+              </Link>
+              <Link to="/newsget" className="nav-item nav-link">
+                News
+              </Link>
+              <Link to="/feedbackget" className="nav-item nav-link">
+                Feedbacks
               </Link>
             </div>
             {username !== "" || loggedIn ? (
@@ -98,7 +106,7 @@ const Header = () => {
                   <h4>Welcome, {username}!</h4>
                   </Link>
                   <div className="dropdown-menu m-0">
-                    <Link to="#" className="dropdown-item">
+                    <Link to="/profilegetstudent" className="dropdown-item">
                       Profile
                     </Link>
                     <button  type="submit"
@@ -119,25 +127,38 @@ const Header = () => {
                     Sign Up
                   </Link>
                   <div className="dropdown-menu m-0">
-                    <Link to="signup/student" className="dropdown-item">
+                    <Link to="/signup/student" className="dropdown-item">
                       student Register
                     </Link>
-                    <Link to="signup/teacher" className="dropdown-item">
+                    <Link to="/signup/teacher" className="dropdown-item">
                    
                       Teacher Register
                     </Link>
                   </div>
                 </div>
 
-                {/* <Link to="signup " className="btn btn-primary py-2 px-4 d-none d-lg-block">Sign Up</Link> */}
+              
 
-                <Link
-                  to="login "
-                  className="btn btn-primary py-2 px-4 mx-2 d-none d-lg-block"
-                >
-                  Login
-                </Link>
+                <div className="nav-item dropdown">
+                  <Link
+                    to="#"
+                    className="nav-link dropdown-toggle btn btn-primary py-2 px-4 d-none d-lg-block"
+                    data-toggle="dropdown"
+                  >
+                    Login
+                  </Link>
+                  <div className="dropdown-menu m-0">
+                    <Link to="/loginstudent" className="dropdown-item">
+                      Student Login
+                    </Link>
+                    <Link to="/loginteacher" className="dropdown-item">
+                   
+                      Teacher Login
+                    </Link>
+                  </div>
+                </div>
               </>
+              
             )}
           </div>
         </nav>

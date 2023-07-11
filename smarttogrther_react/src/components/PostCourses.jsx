@@ -26,7 +26,7 @@ const PostCourse = () => {
       formData.append('price', price);
      formData.append('image', image);
 
-      const response = await fetch('https://example.com/api/courses', {
+      const response = await fetch('http://localhost:8080/api/course', {
         method: 'POST',
         body: formData
       });
@@ -88,7 +88,7 @@ const PostCourse = () => {
         </div>
       
         <div className="form-group">
-          <label htmlFor="image">Image:</label>
+          <label htmlFor="image">Image:Click me </label>
           <input
             type="file"
             id="image"
@@ -96,6 +96,9 @@ const PostCourse = () => {
             onChange={handleImageChange}
             required
           />
+           <div>
+          <img src={image} alt="" width={200} height={200} />
+        </div>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Post Course</button>

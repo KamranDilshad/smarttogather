@@ -21,8 +21,8 @@ const EditStudent = () => {
         const response = await axios.get(`http://localhost:8080/api/students/${id}`);
         const student = response.data.students;
         setData({
-          firstname: student.firstName,
-          lastname: student.lastName,
+          firstname: student.firstname,
+          lastname: student.lastname,
           email: student.email,
           gender: student.gender,
           password: student.password,

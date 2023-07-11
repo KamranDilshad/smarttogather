@@ -13,8 +13,8 @@ const TeacherRegister = () => {
   //const [gender, setGender] = useState("");
 
   const [state, setState] = useState({
-    firstName: "",
-    lastName: "",
+   firstname: "",
+   lastname: "",
     email: "",
     gender: "",
     password: "",
@@ -30,8 +30,10 @@ const TeacherRegister = () => {
     });
   };
   const userData = {
-    firstName: state.firstName,
-    lastName: state.lastName,
+    blocked:false,
+    verified:false,
+   firstname: state.firstname,
+   lastname: state.lastname,
     email: state.email,
     gender: state.gender,
     subjects: state.subjects,
@@ -51,7 +53,7 @@ const TeacherRegister = () => {
         response.data?.user?.insertedId ||
         response.data?.user?.acknowledged
       ) {
-        navigate("/login");
+        navigate("/loginteacher");
         console.log(response.status, response.data);
       } else {
         console.log(response.status, response.data);
@@ -166,9 +168,9 @@ const TeacherRegister = () => {
                   className="form-control input-form "
                   type="firstName"
                   id="fullName"
-                  name="firstName"
+                  name="firstname"
                   placeholder="Jhon"
-                  value={state.firstName}
+                  value={state.firstname}
                   onChange={handleChange}
                   required
                 />
@@ -182,25 +184,15 @@ const TeacherRegister = () => {
                   className="form-control input-form "
                   type="lastName"
                   id="fullName"
-                  name="lastName"
+                  name="lastname"
                   placeholder="Doe"
-                  value={state.lastName}
+                  value={state.lastname}
                   onChange={handleChange}
                   required
                 />
               </div>
-              {/* <div className="email-section">
-                <FaUser className="env" />
-                <input
-                  className="form-control input-form"
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Doe"
-                  value={state.lastName}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="email-section">
+          
                 <div className="mt-1">
                   <label htmlFor="email">Email Address</label>
                 </div>
@@ -217,7 +209,7 @@ const TeacherRegister = () => {
                     required
                   />
                 </div>
-              </div> */}
+              </div>
               <div className="mt-1">
                 <label htmlFor="lastName">Gender</label>
               </div>
@@ -232,8 +224,8 @@ const TeacherRegister = () => {
                 >
                   <option value="">Gender</option>
 
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               </div>
               {/* {type === "customer" ? (
@@ -383,7 +375,7 @@ const TeacherRegister = () => {
             <div>
               <p className="link mt-1">
                 <p className="my-3">Already have an account?</p>
-                <Link to="/login">
+                <Link to="/loginteacher">
                   <button
                     className="fw-bold btn btn-warning "
                     style={{
@@ -405,240 +397,3 @@ const TeacherRegister = () => {
 };
 
 export default TeacherRegister;
-// import React, { useState } from "react";
-// import { FaCaretSquareRight, FaEnvelope, FaLock, FaUser } from "react-icons/fa";
-// import "./Register.css";
-// import axios from "axios";
-
-// const TeacherRegister = () => {
-//   const [checked, setChecked] = useState(false);
-//   const [type, setType] = useState("customer");
-
-//   const [state, setState] = useState({
-//     firstName: "",
-//     lastName: "",
-//     email: "",
-//     gender: "",
-//     password: "",
-//     subjects: []
-//   });
-
-//   const handleChange = (e) => {
-//     const value = e.target.value;
-//     setState({
-//       ...state,
-//       [e.target.name]: value
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const userData = {
-//       firstName: state.firstName,
-//       lastName: state.lastName,
-//       email: state.email,
-//       gender: state.gender,
-//       subjects: state.subjects,
-//       password: state.password
-//     };
-
-//     try {
-//       const response = await axios.post(
-//         "https://smartbackend-production.up.railway.app/api/students",
-//         userData
-//       );
-//       console.log(response.status, response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   const handleCheckboxChange = () => {
-//     setChecked(!checked);
-//   };
-
-//   const handleAccountChange = (event) => {
-//     setType(event.target.value);
-//   };
-
-//   return (
-//     <div className="container my-5">
-//       <div className="row justify-content-center">
-//         <div className="col-md-6">
-//           <div className="card shadow p-3 mb-5 bg-white rounded">
-//             <h4 className="text-center">SignUp In A Few Simple Steps</h4>
-//             <div className="email-section mt-1">
-//               <select
-//                 className="w-100 border border-dark rounded p-2 form-select"
-//                 id="account"
-//                 name="account"
-//                 value={type}
-//                 onChange={handleAccountChange}
-//                 defaultValue={"customer"}
-//               >
-//                 <option value="customer">Student Account</option>
-//                 <option value="business">Teacher Account</option>
-//               </select>
-//             </div>
-//             <form onSubmit={handleSubmit}>
-//               <div className="mt-1">
-//                 <label htmlFor="fullName">First Name</label>
-//               </div>
-//               <div className="email-section">
-//                 <FaUser className="env ms-n2" />
-//                 <input
-//                   className="form-control input-form"
-//                   type="firstName"
-//                   id="fullName"
-//                   name="firstName"
-//                   placeholder="Jhon"
-//                   value={state.firstName}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-//               <div className="mt-1">
-//                 <label htmlFor="lastName">Last Name</label>
-//               </div>
-//               <div className="email-section">
-//                 <FaUser className="env" />
-//                 <input
-//                   className="form-control input-form"
-//                   type="text"
-//                   id="lastName"
-//                   name="lastName"
-//                   placeholder="Doe"
-//                   value={state.lastName}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-//               <div className="mt-1">
-//                 <label htmlFor="email">Email Address</label>
-//               </div>
-//               <div className="email-section">
-//                 <FaEnvelope className="env" />
-//                 <input
-//                   className="form-control input-form"
-//                   id="email"
-//                   name="email"
-//                   placeholder="email"
-//                   type="email"
-//                   value={state.email}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-//               <div className="emailsection mt-1">
-//                 <select
-//                   className="form-select"
-//                   id="gender"
-//                   name="gender"
-//                   value={state.gender}
-//                   onChange={handleChange}
-//                   required
-//                 >
-//                   <option value="gender">Gender</option>
-//                   <option value="male">Male</option>
-//                   <option value="female">Female</option>
-//                 </select>
-//               </div>
-//               {type === "customer" ? (
-//                 <>
-//                   <div className="mt-1">
-//                     <label htmlFor="businessCategory">Learn Subject</label>
-//                   </div>
-//                   <div className="password-section">
-//                     <FaCaretSquareRight className="env" />
-//                     <input
-//                       className="form-control input-form"
-//                       name="subjects"
-//                       id="businessCategory"
-//                       placeholder="Subject Name"
-//                       value={state.subjects}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                 </>
-//               ) : (
-//                 <>
-//                   <div className="mt-1">
-//                     <label htmlFor="businessCategory">Teach Subject</label>
-//                   </div>
-//                   <div className="password-section">
-//                     <FaCaretSquareRight className="env" />
-//                     <input
-//                       className="form-control input-form"
-//                       id="businessCategory"
-//                       name="subjects"
-//                       placeholder="Subject Name"
-//                       value={state.subjects}
-//                       onChange={handleChange}
-//                       required
-//                     />
-//                   </div>
-//                 </>
-//               )}
-//               <div className="mt-1">
-//                 <label htmlFor="password">Password</label>
-//               </div>
-//               <div className="password-section">
-//                 <FaLock className="env" />
-//                 <input
-//                   className="form-control input-form"
-//                   type="password"
-//                   id="password"
-//                   name="password"
-//                   placeholder="password"
-//                   value={state.password}
-//                   onChange={handleChange}
-//                   required
-//                 />
-//               </div>
-//               <p className="link mt-0">
-//                 <p>Forget Password?</p>
-//                 <div>
-//                   <label>
-//                     <input
-//                       type="checkbox"
-//                       checked={checked}
-//                       onChange={handleCheckboxChange}
-//                     />
-//                     Remember me
-//                   </label>
-//                 </div>
-//               </p>
-//               <div className="login-button mt-0">
-//                 <button
-//                   type="submit"
-//                   className="fw-bold btn btn-primary"
-//                   style={{ width: "100%", borderRadius: "10px" }}
-//                 >
-//                   Create My Account
-//                 </button>
-//               </div>
-//             </form>
-//             <div>
-//               <p className="link mt-1">
-//                 <p className="my-3">Already have an account?</p>
-//                 <button
-//                   className="fw-bold btn btn-warning"
-//                   style={{
-//                     width: "30%",
-//                     color: "white",
-//                     borderRadius: "10px"
-//                   }}
-//                 >
-//                   Sign In
-//                 </button>
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TeacherRegister;
