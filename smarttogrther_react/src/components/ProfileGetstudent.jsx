@@ -44,7 +44,15 @@ const ProfileGetstudent = () => {
       console.log(id ,"this is ");
     const result= await axios.put(`http://localhost:8080/api/students/${id}`, data);
       console.log(result.data,"this is result");
-      navigate("/student");
+     
+      if(result!==null){
+        localStorage.removeItem("loggedIn");
+    localStorage.removeItem("username");
+    localStorage.removeItem("degree");
+    localStorage.removeItem("id");
+    window.location.reload();
+    navigate('/');
+      }
     } catch (error) {
       console.log(error);
     }

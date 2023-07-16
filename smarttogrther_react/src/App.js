@@ -19,6 +19,7 @@ import FeedbackPage from "./components/FeedBackResponse";
 import TeacherLogin from "./components/TeacherLogin";
 import GetNews from "./components/GetNews";
 import ProfileGetstudent from "./components/ProfileGetstudent";
+import TeacherDetail from "./components/TeacherDetail";
 
 function App() {
   return (
@@ -40,11 +41,12 @@ function App() {
         <Route path="/coursedetail" element={<CourseDetail />} />
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/courses/coursedetail" element={<CourseDetail />} />
+        <Route path="/teacherDetail" element={<TeacherDetail/>} />
         <Route path="/loginstudent" element={<LoginComponent />} />
         <Route path="/loginteacher" element={<TeacherLogin/>} />
         <Route path="/signup/student" element={<Register />} />
         <Route path="/signup/teacher" element={<TeacherRegister  />} />
-        <Route path="/profilegetstudent" element={<ProfileGetstudent/>} />
+        <Route path="/profilegetstudent/:id" element={<ProfileGetstudent/>} />
       </Routes>
     
       <Footer />

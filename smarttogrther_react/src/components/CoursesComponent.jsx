@@ -62,7 +62,7 @@ console.log("this is query", query);
                         <a className="dropdown-item" href="#">Courses 3</a>
                     </div>
                 </div> */}
-                <input type="text" className="form-control border-light" style={{padding: "30px 25px"}} placeholder="Keyword"
+                <input type="text" className="form-control border-light" style={{padding: "30px 25px"}} placeholder="Search Courses"
                   onChange={(e) => setQuery(e.target.value.toLowerCase())} />
                 <div className="input-group-append">
                     <button className="btn btn-secondary px-4 px-lg-5">Search</button>

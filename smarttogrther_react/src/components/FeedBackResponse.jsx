@@ -36,8 +36,9 @@ const FeedbackPage = () => {
       {feedbacks.length === 0 ? (
         <p>No feedbacks available.</p>
       ) : (
-        <ul className="feedback-card">
+        <ul className="feedback-card" >
           {feedbacks.map((feedback) => (
+            <div className='feedback-list' >
             <li className="feedback-item" key={feedback.id}>
               <strong className="feedback-name">{feedback.name}</strong>,
               <br />
@@ -45,6 +46,7 @@ const FeedbackPage = () => {
               <br />
               <span className="feedback-message">{feedback.message}</span>
             </li>
+            </div>
           ))}
         </ul>
       )}

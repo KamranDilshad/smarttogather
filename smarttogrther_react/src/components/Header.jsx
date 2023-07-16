@@ -1,33 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [student, setStudent] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if user is already logged in using local storage
     const storedLoggedIn = localStorage.getItem("loggedIn");
     const storedUsername = localStorage.getItem("username");
+
     if (storedLoggedIn && storedUsername) {
       setLoggedIn(true);
       setUsername(storedUsername);
     }
   }, [username]);
-  
 
-    const handleLogout = () => {
-      // Perform logout logic
+  // useEffect(() => {
 
-      // Assuming the logout is successful
-      setLoggedIn(false);
-      setUsername("");
-      // Clear the stored data from local storage
-      localStorage.removeItem("loggedIn");
-      localStorage.removeItem("username");
-      localStorage.removeItem("degree");
-    };
+  //   axios
+  //     .get("http://localhost:8080/api/students" )
+  //     .then((response) => setStudent(response.data.students))
+  //     .catch((error) => console.error("Error fetching data:", error))
+  //     .finally(() => {
+
+  //     });
+  // }, []);
+
+  // const GetProfile = (id) => {
+  //   axios
+  //   .get("http://localhost:8080/api/students" +id )
+  //   .then((response) => setStudent(response.data.students))
+  //   .catch((error) => console.error("Error fetching data:", error))
+  //   navigate("/profilegetstudent/" + id);
+  // };
+  const GetProfile = (id) => {
+    axios
+      .get(`http://localhost:8080/api/students/${id}`)
+      .then((response) => {
+        const studentData = response.data.students;
+        console.log(studentData);
+        setStudent(studentData);
+        if(studentData!==null){
+
+          navigate(`/profilegetstudent/${id}`);
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  };
+
+  const handleLogout = () => {
+    // Perform logout logic
+
+    // Assuming the logout is successful
+    setLoggedIn(false);
+    setUsername("");
+    // Clear the stored data from local storage
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("username");
+    localStorage.removeItem("degree");
+    localStorage.removeItem("id");
+    navigate('/');
+  };
 
   return (
     <>
@@ -96,23 +133,54 @@ const Header = () => {
               </Link>
             </div>
             {username !== "" || loggedIn ? (
-              <>     
+              <>
                 <div className="nav-item dropdown">
                   <Link
                     to="#"
                     className="nav-link dropdown-toggle btn btn-primary py-2 px-2 d-none d-lg-block"
                     data-toggle="dropdown"
                   >
-                  <h4>Welcome, {username}!</h4>
+                    <h4>Welcome, {username}!</h4>
                   </Link>
                   <div className="dropdown-menu m-0">
-                    <Link to="/profilegetstudent" className="dropdown-item">
+                    {/* <div className="bg-danger">
+                    {student.map((user) => (
+                    
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                          GetProfile(user._id);
+                        }}
+                        key={user._id}
+                      >
+                        Profile
+                      </button>
+                    ))}
+                   
+                    </div> */}
+                      <button
+                        type="button"
+                        className="btn btn-success"
+                        onClick={() => {
+                          GetProfile(localStorage.getItem("id"));
+                        }}
+                      
+                      >
+                        Profile
+                      </button>
+
+                    {/* <Link to="/profilegetstudent/:id" className="dropdown-item">
                       Profile
-                    </Link>
-                    <button  type="submit"
-                  className="fw-bold btn btn-primary"
-                  style={{ width: "60%", borderRadius: "10px" }} onClick={handleLogout}>Logout</button>
-                 
+                    </Link> */}
+                    <button
+                      type="submit"
+                      className="fw-bold btn btn-primary"
+                      style={{ width: "60%", borderRadius: "10px" }}
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
                   </div>
                 </div>
               </>
@@ -131,13 +199,10 @@ const Header = () => {
                       student Register
                     </Link>
                     <Link to="/signup/teacher" className="dropdown-item">
-                   
                       Teacher Register
                     </Link>
                   </div>
                 </div>
-
-              
 
                 <div className="nav-item dropdown">
                   <Link
@@ -152,13 +217,11 @@ const Header = () => {
                       Student Login
                     </Link>
                     <Link to="/loginteacher" className="dropdown-item">
-                   
                       Teacher Login
                     </Link>
                   </div>
                 </div>
               </>
-              
             )}
           </div>
         </nav>

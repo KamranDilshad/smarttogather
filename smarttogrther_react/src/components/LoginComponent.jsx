@@ -58,6 +58,7 @@ const LoginComponent = () => {
         // Store the logged-in state and username in local storage
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", response.data.student.firstName);
+        localStorage.setItem("id", response.data.student._id);
         console.log("this is log",response.data.student.firstName);
         if(response.status === 200){
          

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './FeedbackPage.css';
+import React, { useEffect, useState } from "react";
+import {  FaNewspaper } from "react-icons/fa";
+import axios from "axios";
+import "./FeedbackPage.css";
 
 const GetNews = () => {
   const [news, setNews] = useState([]);
@@ -13,7 +14,7 @@ const GetNews = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/news/');
+      const response = await axios.get("http://localhost:8080/api/news/");
       setNews(response.data);
       setLoading(false);
     } catch (error) {
@@ -31,25 +32,44 @@ const GetNews = () => {
   }
 
   return (
-    <div className="feedback-container">
-      <h2 className="feedback-title">News</h2>
+    <div>
       {news.length === 0 ? (
         <p>No News available.</p>
       ) : (
-        <ul className="feedback-list">
-          {news.map((data) => (
-            <li className="feedback-item" key={data.id}>
-              <strong className="feedback-name">{data.title}</strong>,
-              <br />
-              <span className="feedback-email">({data.description})</span>
-              <br />
-              {/* <span className="feedback-message">{data.image}</span> */}
-              <div>
-          <img src={data.image} alt="" width={200} height={200} />
+        <div className="container-fluid ">
+          <div className="container py-5">
+            <div className="row mx-0 justify-content-center">
+              <div className="col-lg-8">
+                <div className="section-title text-center position-relative mb-5">
+                  <h6 className="d-inline-block position-relative text-secondary text-uppercase pb-2">
+                    News
+                  </h6>
+                  <h1 className="display-4">Top Rated News</h1>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              {news.map((news) => (
+                <div className="col-lg-4 col-md-6 pb-4" key={news.id}>
+                  <img className="img-fluid  " src={news.image} alt="" />
+                  <div className="courses-text">
+                    <h4 className="text-center text-black px-3">
+                      {news.title}
+                    </h4>
+                    <div className="border-top w-100 mt-2">
+                      <div className=" p-1 ">
+                          <FaNewspaper />
+                        <span className="text-black p-2">
+                          {news.description}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-            </li>
-          ))}
-        </ul>
       )}
     </div>
   );
