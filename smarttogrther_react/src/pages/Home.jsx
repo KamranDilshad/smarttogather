@@ -41,6 +41,13 @@ const Home = () => {
         item.degree.includes(query)
     );
   };
+  const handleClick = (teacher) =>{
+    navigate("/teacherDetail" , {
+      state:{
+        item:teacher
+      }
+    })
+  }
   console.log("this is query", query);
   return (
     <>
@@ -102,8 +109,8 @@ const Home = () => {
                 console.log(teacher, "teachersss")
                 return(
                   <div className="col-lg-3 col-md-6 col-sm-12 pb-4" key={teacher.id}>
-                      <Link className="courses-list-item position-relative d-block overflow-hidden mb-2" 
-                      to="/teacherDetail">
+                      <div className="courses-list-item position-relative d-block overflow-hidden mb-2" 
+                      onClick={() => handleClick(teacher)}>
                   <img className="img-fluid rounded mx-auto d-block " src={teacherimage} alt="" width={400} height={100} />
                   <div className="  text-center p-4">
                       <h4 className="mb-1">{teacher.firstname} {teacher.lastname}</h4>
@@ -116,7 +123,7 @@ const Home = () => {
                           <Link className="text-black pl-2" to="https://www.youtube.com/" target="_blank"> <FaYoutube className="fab fa-youtube" /> </Link>
                       </div>
                   </div>
-                  </Link> 
+                  </div> 
               </div>
               
                 )

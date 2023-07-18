@@ -59,12 +59,12 @@ const TeacherLogin = () => {
         localStorage.setItem("loggedIn", true);
         localStorage.setItem("username", response.data.teacher.firstname);
         localStorage.setItem("degree", response.data.teacher.degree);
-        console.log("this is log",response.data.teacher.firstname);
-        if(response.status === 200){
-        
+        localStorage.setItem("id", response.data.teacher._id);
+        console.log("this is log", response.data.teacher.firstname);
+        if (response.status === 200) {
           navigate("/");
-          console.log('somthing');
-            window.location.reload();
+          console.log("somthing");
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -87,7 +87,7 @@ const TeacherLogin = () => {
   //   return (
   //     <div>
   //       <p>Welcome, {username}!</p>
-     
+
   //     </div>
   //   );
   // }

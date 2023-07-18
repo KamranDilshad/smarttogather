@@ -1,9 +1,8 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ProfileGetstudent = () => {
+const ProfileGetTeacher = () => {
   const [data, setData] = useState({
     firstname: "",
     lastname: "",
@@ -11,6 +10,7 @@ const ProfileGetstudent = () => {
     gender: "",
     password: "",
     subjects: "",
+    degree:"",
     description: "",
   });
   const navigate = useNavigate();
@@ -19,16 +19,19 @@ const ProfileGetstudent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/students/${id}`);
-        const student = response.data.students;
+        const response = await axios.get(
+          `http://localhost:8080/api/teachers/${id}`
+        );
+        const teacher = response.data.teacher;
         setData({
-          firstname: student.firstname,
-          lastname: student.lastname,
-          email: student.email,
-          gender: student.gender,
-          password: student.password,
-          subjects: student.subjects,
-          description:student.description,
+          firstname: teacher.firstname,
+          lastname: teacher.lastname,
+          email: teacher.email,
+          gender: teacher.gender,
+          password: teacher.password,
+          subjects: teacher.subjects,
+          degree: teacher.degree,
+          description: teacher.description,
         });
       } catch (error) {
         console.log(error);
@@ -43,18 +46,21 @@ const ProfileGetstudent = () => {
 
     try {
       console.log(data);
-      console.log(id ,"this is ");
-    const result= await axios.put(`http://localhost:8080/api/students/${id}`, data);
-      console.log(result.data,"this is result");
-     
-      if(result!==null){
+      console.log(id, "this is ");
+      const result = await axios.put(
+        `http://localhost:8080/api/teachers/${id}`,
+        data
+      );
+      console.log(result.data, "this is result");
+
+      if (result !== null) {
         localStorage.removeItem("loggedIn");
-    localStorage.removeItem("username");
-    localStorage.removeItem("degree");
-    localStorage.removeItem("id");
-   
-    navigate('/');
-    window.location.reload();
+        localStorage.removeItem("username");
+        localStorage.removeItem("degree");
+        localStorage.removeItem("id");
+
+        navigate("/");
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -147,7 +153,21 @@ const ProfileGetstudent = () => {
             value={data.subjects}
           />
         </div>
-      
+        <div className="col-12">
+          <label htmlFor="inputAddress" className="form-label">
+            Degree
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="inputAddress"
+            name="degree"
+            placeholder="Degree"
+            autoComplete="off"
+            onChange={handleChange}
+            value={data.degree}
+          />
+        </div>
 
         <div className="col-12">
           <label htmlFor="inputAddress" className="form-label">
@@ -189,5 +209,4 @@ const ProfileGetstudent = () => {
   );
 };
 
-export default ProfileGetstudent;
-
+export default ProfileGetTeacher;

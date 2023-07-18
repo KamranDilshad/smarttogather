@@ -20,14 +20,14 @@ import TeacherLogin from "./components/TeacherLogin";
 import GetNews from "./components/GetNews";
 import ProfileGetstudent from "./components/ProfileGetstudent";
 import TeacherDetail from "./components/TeacherDetail";
+import ProfileGetTeacher from "./components/ProfileGetTeacher";
 
 function App() {
   return (
     <div className="App">
       <Topbar />
       <Header />
-      <FeedbackPopup/>
-    
+      <FeedbackPopup />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,20 +35,21 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/pages" element={<Pages />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/newsget" element={<GetNews/>} />
-        <Route path="/feedbackget" element={<FeedbackPage/>} />
+        <Route path="/newsget" element={<GetNews />} />
+        <Route path="/feedbackget" element={<FeedbackPage />} />
         <Route path="/instructor" element={<Instructor />} />
         <Route path="/coursedetail" element={<CourseDetail />} />
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/courses/coursedetail" element={<CourseDetail />} />
-        <Route path="/teacherDetail" element={<TeacherDetail/>} />
+        <Route path="/teacherDetail" element={<TeacherDetail />} />
         <Route path="/loginstudent" element={<LoginComponent />} />
-        <Route path="/loginteacher" element={<TeacherLogin/>} />
+        <Route path="/loginteacher" element={<TeacherLogin />} />
         <Route path="/signup/student" element={<Register />} />
-        <Route path="/signup/teacher" element={<TeacherRegister  />} />
-        <Route path="/profilegetstudent/:id" element={<ProfileGetstudent/>} />
+        <Route path="/signup/teacher" element={<TeacherRegister />} />
+        <Route path="/profilegetstudent/:id" element={<ProfileGetstudent />} />
+        <Route path="/profilegetteacher/:id" element={<ProfileGetTeacher />} />
       </Routes>
-    
+
       <Footer />
     </div>
   );

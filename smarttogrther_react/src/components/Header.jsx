@@ -5,7 +5,7 @@ import axios from "axios";
 const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [student, setStudent] = useState([]);
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,33 +19,32 @@ const Header = () => {
     }
   }, [username]);
 
-  // useEffect(() => {
+  const GetProflieTeacher = (id) => {
+    axios
+      .get(`http://localhost:8080/api/teachers/${id}`)
+      .then((response) => {
+        const teacherData = response.data.teacher;
+        console.log("this is response",response);
 
-  //   axios
-  //     .get("http://localhost:8080/api/students" )
-  //     .then((response) => setStudent(response.data.students))
-  //     .catch((error) => console.error("Error fetching data:", error))
-  //     .finally(() => {
+        // console.log("this is teacher data",teacherData);
 
-  //     });
-  // }, []);
 
-  // const GetProfile = (id) => {
-  //   axios
-  //   .get("http://localhost:8080/api/students" +id )
-  //   .then((response) => setStudent(response.data.students))
-  //   .catch((error) => console.error("Error fetching data:", error))
-  //   navigate("/profilegetstudent/" + id);
-  // };
-  const GetProfile = (id) => {
+        if (teacherData !== null) {
+          navigate(`/profilegetteacher/${id}`);
+        }
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  };
+
+
+  const GetProfileStudent = (id) => {
     axios
       .get(`http://localhost:8080/api/students/${id}`)
       .then((response) => {
         const studentData = response.data.students;
         console.log(studentData);
-        setStudent(studentData);
-        if(studentData!==null){
-
+       
+        if (studentData !== null) {
           navigate(`/profilegetstudent/${id}`);
         }
       })
@@ -63,8 +62,10 @@ const Header = () => {
     localStorage.removeItem("username");
     localStorage.removeItem("degree");
     localStorage.removeItem("id");
-    navigate('/');
+    navigate("/");
   };
+
+ 
 
   return (
     <>
@@ -143,39 +144,29 @@ const Header = () => {
                     <h4>Welcome, {username}!</h4>
                   </Link>
                   <div className="dropdown-menu m-0">
-                    {/* <div className="bg-danger">
-                    {student.map((user) => (
-                    
-                      <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                          GetProfile(user._id);
-                        }}
-                        key={user._id}
-                      >
-                        Profile
-                      </button>
-                    ))}
-                   
-                    </div> */}
-                      <button
-                        type="button"
-                        className="btn btn-success"
-                        onClick={() => {
-                          GetProfile(localStorage.getItem("id"));
-                        }}
-                      
-                      >
-                        Profile
-                      </button>
+                    <button
+                      type="button"
+                      className="fw-bold btn btn-success m-2"
+                      style={{ width: "60%", borderRadius: "10px" }}
+                      onClick={() => {
+                        if (localStorage.getItem("degree")) {
+                          GetProflieTeacher(localStorage.getItem("id"));
+                          console.log("this is teacherid",localStorage.getItem("id"));
+                        } else {
+                          GetProfileStudent(localStorage.getItem("id"));
+                          console.log("this is studentid",localStorage.getItem("id"));
+                        }
+                      }}
+                    >
+                      Profile
+                    </button>
 
                     {/* <Link to="/profilegetstudent/:id" className="dropdown-item">
                       Profile
                     </Link> */}
                     <button
                       type="submit"
-                      className="fw-bold btn btn-primary"
+                      className="fw-bold btn btn-primary m-2"
                       style={{ width: "60%", borderRadius: "10px" }}
                       onClick={handleLogout}
                     >
