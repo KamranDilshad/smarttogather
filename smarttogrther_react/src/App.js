@@ -21,6 +21,7 @@ import GetNews from "./components/GetNews";
 import ProfileGetstudent from "./components/ProfileGetstudent";
 import TeacherDetail from "./components/TeacherDetail";
 import ProfileGetTeacher from "./components/ProfileGetTeacher";
+import ChatsPage from "./components/ChatsPage";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path="/signup/teacher" element={<TeacherRegister />} />
         <Route path="/profilegetstudent/:id" element={<ProfileGetstudent />} />
         <Route path="/profilegetteacher/:id" element={<ProfileGetTeacher />} />
+        <Route path="/chat" element={<ChatsPage/>} />
       </Routes>
 
       <Footer />

@@ -4,14 +4,20 @@ import CoursesComponent from "../components/CoursesComponent";
 import InstructorComponent from "../components/InstructorsComponent";
 import axios from "axios";
 import download from "../components/download.png";
-import teacherimage from "./icons8-team-FcLyt7lW5wg-unsplash.jpg"
+import teacherimage from "./icons8-team-FcLyt7lW5wg-unsplash.jpg";
 import Topbar from "../components/Topbar";
 import About from "./About";
 import Courses from "./Courses";
-import { FaFacebookF, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [teacher, setTeacher] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,13 +47,13 @@ const Home = () => {
         item.degree.includes(query)
     );
   };
-  const handleClick = (teacher) =>{
-    navigate("/teacherDetail" , {
-      state:{
-        item:teacher
-      }
-    })
-  }
+  const handleClick = (teacher) => {
+    navigate("/teacherDetail", {
+      state: {
+        item: teacher,
+      },
+    });
+  };
   console.log("this is query", query);
   return (
     <>
@@ -90,6 +96,7 @@ const Home = () => {
 
       {/* 
      Get Teacher Section  */}
+     
 
       <div className="container-fluid ">
         <div className="container py-5">
@@ -106,29 +113,75 @@ const Home = () => {
           <div className="row">
             {teacher &&
               search(teacher)?.map((teacher) => {
-                console.log(teacher, "teachersss")
-                return(
-                  <div className="col-lg-3 col-md-6 col-sm-12 pb-4" key={teacher.id}>
-                      <div className="courses-list-item position-relative d-block overflow-hidden mb-2" 
-                      onClick={() => handleClick(teacher)}>
-                  <img className="img-fluid rounded mx-auto d-block " src={teacherimage} alt="" width={400} height={100} />
-                  <div className="  text-center p-4">
-                      <h4 className="mb-1">{teacher.firstname} {teacher.lastname}</h4>
-                      <p className="mb-2">  Degree: {teacher.degree} </p>
-                      <div className="d-flex justify-content-center">
-                          <Link className="text-black px-2" to="https://www.facebook.com/login/" target="_blank"> <FaFacebookF className="fab fa-facebook-f" /> </Link>
-                          <Link className="text-black px-2" to="https://twitter.com/i/flow/login" target="_blank"> <FaTwitter className="fab fa-twitter" /> </Link>
-                          <Link className="text-black px-2" to="https://www.linkedin.com/login" target="_blank"> <FaLinkedin className="fab fa-linkedin-in" /> </Link>
-                          <Link className="text-black px-2" to="https://www.instagram.com/accounts/login/" target="_blank"> <FaInstagram className="fab fa-instagram" /> </Link>
-                          <Link className="text-black pl-2" to="https://www.youtube.com/" target="_blank"> <FaYoutube className="fab fa-youtube" /> </Link>
+                console.log(teacher, "teachersss");
+                return (
+                  <div
+                    className="col-lg-3 col-md-6 col-sm-12 pb-4"
+                    key={teacher.id}
+                  >
+                    <div
+                      className="courses-list-item position-relative d-block overflow-hidden mb-2"
+                      onClick={() => handleClick(teacher)}
+                    >
+                      <img
+                        className="img-fluid rounded mx-auto d-block "
+                        src={teacherimage}
+                        alt=""
+                        width={400}
+                        height={100}
+                      />
+                      <div className="  text-center p-4">
+                        <h4 className="mb-1">
+                          {teacher.firstname} {teacher.lastname}
+                        </h4>
+                        <p className="mb-2"> Degree: {teacher.degree} </p>
+                        <div className="d-flex justify-content-center">
+                          <Link
+                            className="text-black px-2"
+                            to="https://www.facebook.com/login/"
+                            target="_blank"
+                          >
+                            {" "}
+                            <FaFacebookF className="fab fa-facebook-f" />{" "}
+                          </Link>
+                          <Link
+                            className="text-black px-2"
+                            to="https://twitter.com/i/flow/login"
+                            target="_blank"
+                          >
+                            {" "}
+                            <FaTwitter className="fab fa-twitter" />{" "}
+                          </Link>
+                          <Link
+                            className="text-black px-2"
+                            to="https://www.linkedin.com/login"
+                            target="_blank"
+                          >
+                            {" "}
+                            <FaLinkedin className="fab fa-linkedin-in" />{" "}
+                          </Link>
+                          <Link
+                            className="text-black px-2"
+                            to="https://www.instagram.com/accounts/login/"
+                            target="_blank"
+                          >
+                            {" "}
+                            <FaInstagram className="fab fa-instagram" />{" "}
+                          </Link>
+                          <Link
+                            className="text-black pl-2"
+                            to="https://www.youtube.com/"
+                            target="_blank"
+                          >
+                            {" "}
+                            <FaYoutube className="fab fa-youtube" />{" "}
+                          </Link>
+                        </div>
                       </div>
+                    </div>
                   </div>
-                  </div> 
-              </div>
-              
-                )
-
-                })}
+                );
+              })}
 
             {/* <div className="col-lg-4 col-md-6 pb-4">
                             <a className="courses-list-item position-relative d-block overflow-hidden mb-2" href="detail.html">
